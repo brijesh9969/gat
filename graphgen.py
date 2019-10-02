@@ -51,79 +51,105 @@ ez=[]
 accx=[]
 accy=[]
 accz=[]
-
+time_final=[]
+ex_final=[]
+ey_final=[]
+ez_final=[]
+accx_final=[]
+accy_final=[]
+accz_final=[]
+j=1
 for i in range(len(data)):
-    if data[i][17]==1:
-        time.append(data[i][0])
+    if data[i][17]==j:
+        # q=j+1
+        if(j==8):
+            break
+        elif data[i][17]==j and data[i+1][17]==j+1:
+
+            time_final.append(time)
+            ex_final.append(ex)
+            ey_final.append(ey)
+            ez_final.append(ez)
+            accx_final.append(accx)
+            accy_final.append(accy)
+            accz_final.append(accz)
+            time=[]
+            ex=[]
+            ey=[]
+            ez=[]
+            accx=[]
+            accy=[]
+            accz=[]
+            print("j:")
+            print(j)
+            j+=1
+        # a2=data[i][0]
+        # b2=len(data)
+        time.append((data[i][0]))
         ex.append(data[i][1])
         ey.append(data[i][2])
         ez.append(data[i][3])
         accx.append(data[i][4])
         accy.append(data[i][5])
         accz.append(data[i][6])
+    # elif data[i][17]==1 and data[i+1][17]==2:
+    #     da
+print("########")
+# print(time_final)
+# x=[]
+time_final3=[]
+print(range(len(time_final)))
 
+for i in range(len(time_final)):
+    print(i)
+    time_final2=[]
+    for j in range(len(time_final[i])):
+        print(j)
+        # print("Okkkkkkkkkkkkk")
+        time_final2.append((j/len(time_final[i]))*100)
+    time_final3.append(time_final2)
+
+print("@@@@@@@@@@@@@@@@@@####################")
+# print(time_final2)
+# for i in time_final3:
+print(time_final3)
+
+# for i in time_final2:
+#     print(i)
+
+
+k=1
+for i in range(6):
+    # x=str(32)+str(k)
+    # q='#'+str(i+2)*6
+    # print(q)
+    # print(ex_final[i])
+    # print(len(ex_final[i]))
+    plt.plot(time_final3[i], ex_final[i], '.-')
+
+    plt.title('time (s)')
+    plt.ylabel('ex')
+    k+=1
+plt.show()
 #print("time",time,"ex",ex,"ey",ey,"ez",ez,"accx",accx,"accy",accy,"accz",accz)
 # length=mean(time)*len(time)-5000
 # # l=0.6*length
 # print(length)
-print(time[len(time)-1])
-print("$$$$$$$$$$$44")
-print(time[0])
-
-length=(0.6*(time[len(time)-1]-time[0])+time[0])
-print(length)
-print("$$$$$$$$$$$44")
-print(mean(time))
-
-# x=[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
-# y=[1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18]
-
-x=[]
-y=[]
-
-for i in range(100):
-    x.append(length)
-    y.append(i)
-
-
-##########################################################################################  graph
-plt.subplot(321)
-plt.plot(time, ex, '.-')
-plt.plot(x, y, '-')
-plt.title('time (s)')
-plt.ylabel('ex')
-
-plt.subplot(322)
-plt.plot(time, ey, '.-')
-plt.plot(x, y, '-')
-plt.xlabel('time (s)')
-plt.ylabel('ey')
-
-plt.subplot(323)
-plt.plot(time, ez, '.-')
-plt.plot(x, y, '-')
-plt.xlabel('time (s)')
-plt.ylabel('ez')
-
-plt.subplot(324)
-plt.plot(time, accx, '.-')
-plt.plot(x, y, '-')
-plt.xlabel('time (s)')
-plt.ylabel('accx')
-
-plt.subplot(325)
-plt.plot(time, accy, '.-')
-plt.plot(x, y, '-')
-plt.xlabel('time (s)')
-plt.ylabel('accy')
-
-plt.subplot(326)
-plt.plot(time, accz, '.-')
-plt.plot(x, y, '-')
-plt.xlabel('time (s)')
-plt.ylabel('accz')
-
-
-plt.show()
-
-# print(data)
+# print(time[len(time)-1])
+# print("$$$$$$$$$$$44")
+# print(time[0])
+#
+# length=(0.6*(time[len(time)-1]-time[0])+time[0])
+# print(length)
+# print("$$$$$$$$$$$44")
+# print(mean(time))
+#
+# # x=[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
+# # y=[1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18]
+#
+# x=[]
+# y=[]
+#
+# for i in range(100):
+#     x.append(length)
+#     y.append(i)
