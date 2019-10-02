@@ -38,6 +38,7 @@ for i in range(0, 10):
     fifteen_col.remove(max1);
     final_list_ten.append(max1)
 
+
 #print(final_list_ten)
 #print(mean(final_list_ten))
 
@@ -59,10 +60,61 @@ accx_final=[]
 accy_final=[]
 accz_final=[]
 j=1
+
+def plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final):
+    print("@@@@@@@@@@@@@@@@@@####################")
+    #plotting  the graph
+    k=1
+    # plt.legend("123456789",loc="lower right")
+    plt.subplot(311)
+    for i in range(max3-2):
+        plt.legend("123456789",loc="upper right")
+        plt.plot(time_final3[i], ex_final[i],'.-')
+        plt.title('time (s)')
+        plt.ylabel('ex')
+        k+=1
+    # plt.show()
+
+    plt.subplot(312)
+    for i in range(max3-2):
+        plt.plot(time_final3[i], ey_final[i], '.-')
+        plt.title('time (s)')
+        plt.ylabel('ey')
+        k+=1
+
+    plt.subplot(313)
+    for i in range(max3-2):
+        plt.plot(time_final3[i], ez_final[i], '.-')
+        plt.title('time (s)')
+        plt.ylabel('ez')
+        k+=1
+
+        # plt.subplot(324)
+        # for i in range(max3-2):
+        #     plt.plot(time_final3[i], accx_final[i], '.-')
+        #     plt.title('time (s)')
+        #     plt.ylabel(ex)
+        #     k+=1
+    # plt.legend("123456789",loc="upper right")
+    plt.show()
+
+
+
+print("XXXXXXXXXXXXXXXXXXXXX")
+max2=[]
+for i in range(len(data)):
+    max2.append(data[i][-1])
+# print(max(max2))
+max3=max(max2)
+sixty_percent=[]
 for i in range(len(data)):
     if data[i][17]==j:
-        # q=j+1
-        if(j==8):
+        if data[i][16]==2 and data[i+1][16]==3:
+            ####finding a value of phase for 60%
+            # print("hello")
+            sixty_percent.append(data[i+1][0])
+            # print(i)
+        if(j==max3-1):
             break
         elif data[i][17]==j and data[i+1][17]==j+1:
 
@@ -80,8 +132,8 @@ for i in range(len(data)):
             accx=[]
             accy=[]
             accz=[]
-            print("j:")
-            print(j)
+            # print("j:")
+            # print(j)
             j+=1
         # a2=data[i][0]
         # b2=len(data)
@@ -92,64 +144,37 @@ for i in range(len(data)):
         accx.append(data[i][4])
         accy.append(data[i][5])
         accz.append(data[i][6])
-    # elif data[i][17]==1 and data[i+1][17]==2:
-    #     da
+
+
+
 print("########")
-# print(time_final)
-# x=[]
+##########converting time into percentage
+
+
 time_final3=[]
 print(range(len(time_final)))
+sixty_percent_final=[]
 
 for i in range(len(time_final)):
     print(i)
     time_final2=[]
     for j in range(len(time_final[i])):
-        print(j)
-        # print("Okkkkkkkkkkkkk")
         time_final2.append((j/len(time_final[i]))*100)
+        for k in range(len(sixty_percent)):
+            if(time_final[i][j]==sixty_percent[k]):
+                # print("KKKKKKKKKKKKkk")
+                # print(sixty_percent[k])
+                sixty_percent_final.append((j/len(time_final[i]))*100)
+
+
+
     time_final3.append(time_final2)
 
-print("@@@@@@@@@@@@@@@@@@####################")
-# print(time_final2)
-# for i in time_final3:
-print(time_final3)
+print(sixty_percent_final)
 
-# for i in time_final2:
-#     print(i)
-
-
-k=1
-for i in range(6):
-    # x=str(32)+str(k)
-    # q='#'+str(i+2)*6
-    # print(q)
-    # print(ex_final[i])
-    # print(len(ex_final[i]))
-    plt.plot(time_final3[i], ex_final[i], '.-')
-
-    plt.title('time (s)')
-    plt.ylabel('ex')
-    k+=1
-plt.show()
-#print("time",time,"ex",ex,"ey",ey,"ez",ez,"accx",accx,"accy",accy,"accz",accz)
-# length=mean(time)*len(time)-5000
-# # l=0.6*length
-# print(length)
-# print(time[len(time)-1])
-# print("$$$$$$$$$$$44")
-# print(time[0])
-#
-# length=(0.6*(time[len(time)-1]-time[0])+time[0])
-# print(length)
-# print("$$$$$$$$$$$44")
-# print(mean(time))
-#
-# # x=[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5]
-# # y=[1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18]
-#
-# x=[]
-# y=[]
-#
-# for i in range(100):
-#     x.append(length)
-#     y.append(i)
+plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final)
+# plottingmap(time_final3,ey_final,"ey")
+# plottingmap(time_final3,ez_final,"ez")
+# plottingmap(time_final3,accx_final)
+# plottingmap(time_final3,accy_final)
+# plottingmap(time_final3,accz_final)
