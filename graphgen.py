@@ -5,6 +5,8 @@ import pandas as pd
 from statistics import mean
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.pyplot import cm
+
 
 
 data=read_csv("records (2).csv").values.tolist()
@@ -61,41 +63,84 @@ accy_final=[]
 accz_final=[]
 j=1
 
-def plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final):
+def plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final,sixty_percent_final):
     print("@@@@@@@@@@@@@@@@@@####################")
-    #plotting  the graph
-    k=1
-    # plt.legend("123456789",loc="lower right")
+
     plt.subplot(311)
+    color=iter(cm.rainbow(np.linspace(0,1,10)))
     for i in range(max3-2):
-        plt.legend("123456789",loc="upper right")
-        plt.plot(time_final3[i], ex_final[i],'.-')
+        c=next(color)
+        plt.plot(time_final3[i], ex_final[i],'.-',c=c,label="cycle"+str(i+1))
+        # for()
+        x=[]
+        y_sixty=[]
+        for j in range(100):
+            y_sixty.append(j)
+
+        for j in range(100):
+            x.append(sixty_percent_final[i])
+
+        plt.plot(x,y_sixty,':',c=c)
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.title('time (s)')
         plt.ylabel('ex')
-        k+=1
-    # plt.show()
+
 
     plt.subplot(312)
+    color=iter(cm.rainbow(np.linspace(0,1,10)))
     for i in range(max3-2):
-        plt.plot(time_final3[i], ey_final[i], '.-')
+        c=next(color)
+        plt.plot(time_final3[i], ey_final[i],'.-',c=c,label="cycle"+str(i+1))
+        # for()
+        x=[]
+        y_sixty=[]
+        for j in range(100):
+            y_sixty.append(j)
+
+        for j in range(100):
+            x.append(sixty_percent_final[i])
+
+        plt.plot(x,y_sixty,':',c=c)
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.title('time (s)')
         plt.ylabel('ey')
-        k+=1
 
     plt.subplot(313)
+    color=iter(cm.rainbow(np.linspace(0,1,10)))
     for i in range(max3-2):
-        plt.plot(time_final3[i], ez_final[i], '.-')
+        c=next(color)
+        plt.plot(time_final3[i], ez_final[i],'.-',c=c,label="cycle"+str(i+1))
+        # for()
+        x=[]
+        y_sixty=[]
+        for j in range(100):
+            y_sixty.append(j)
+
+        for j in range(100):
+            x.append(sixty_percent_final[i])
+
+        plt.plot(x,y_sixty,':',c=c)
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.title('time (s)')
         plt.ylabel('ez')
-        k+=1
 
-        # plt.subplot(324)
-        # for i in range(max3-2):
-        #     plt.plot(time_final3[i], accx_final[i], '.-')
-        #     plt.title('time (s)')
-        #     plt.ylabel(ex)
-        #     k+=1
-    # plt.legend("123456789",loc="upper right")
+
+
+
+
+    # plt.subplot(312)
+    # for i in range(max3-2):
+    #     plt.plot(time_final3[i], ey_final[i], '.-')
+    #     plt.title('time (s)')
+    #     plt.ylabel('ey')
+    #
+    #
+    # plt.subplot(313)
+    # for i in range(max3-2):
+    #     plt.plot(time_final3[i], ez_final[i], '.-')
+    #     plt.title('time (s)')
+    #     plt.ylabel('ez')
+
     plt.show()
 
 
@@ -111,9 +156,9 @@ for i in range(len(data)):
     if data[i][17]==j:
         if data[i][16]==2 and data[i+1][16]==3:
             ####finding a value of phase for 60%
-            # print("hello")
+
             sixty_percent.append(data[i+1][0])
-            # print(i)
+
         if(j==max3-1):
             break
         elif data[i][17]==j and data[i+1][17]==j+1:
@@ -172,7 +217,7 @@ for i in range(len(time_final)):
 
 print(sixty_percent_final)
 
-plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final)
+plottingmap(time_final3,ex_final,ey_final,ez_final,accx_final,accy_final,accz_final,sixty_percent_final)
 # plottingmap(time_final3,ey_final,"ey")
 # plottingmap(time_final3,ez_final,"ez")
 # plottingmap(time_final3,accx_final)
